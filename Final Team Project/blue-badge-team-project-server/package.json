@@ -2,7 +2,7 @@
   "name": "blue-badge-team-project-server",
   "version": "1.0.0",
   "description": "Blue Badge Team Project",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
