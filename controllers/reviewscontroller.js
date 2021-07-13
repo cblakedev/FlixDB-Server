@@ -6,6 +6,6 @@ let validateJWT = require('../middleware/jwt-validation');
 
 /* Write endpoint below */
 
-
+//ok
 
 module.exports = router
