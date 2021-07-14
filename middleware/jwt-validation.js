@@ -4,8 +4,8 @@ const { UserModel } = require('../models')
 const validateJWT = async (req, res, next) => {
     if (req.method == 'OPTIONS') {
         next();
-        
-    } else if (req.headers.authorization && req.headers.authorization.includes('Bearer')) {
+
+    } else if (req.headers.authorization && req.headers.authorization.includes('Bearer')) { //checks if authorization is truthy and if the string Bearer is included
         const { authorization } = req.headers;
         console.log(authorization);
 
