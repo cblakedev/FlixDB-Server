@@ -13,11 +13,11 @@ router.post('/register', async (req, res) => {
     try {
         const User = await UserModel.create({ //creates new instance of username and password based on the request
             username,
-            password: bcrypt.hashSync(password, 17)//utlizes bcrypt to salt req.password and produce hashed password
+            password: bcrypt.hashSync(password, 17)//utilizes bcrypt to salt req.password and produce hashed password
         });
 
-        res.status(202).json({ //if req is succesful, return text/object as JSON
-            message: 'Succesfully registered!',
+        res.status(202).json({ //if req is successful, return text/object as JSON
+            message: 'Successfully registered!',
             user: User,
         })
     } catch (err) {
@@ -26,7 +26,7 @@ router.post('/register', async (req, res) => {
                 message: "Username already in use. Please try a different username.",
             });
         } else {
-            res.status(500).json({ //returns an error if request is unsuccesful
+            res.status(500).json({ //returns an error if request is unsuccessful
                 message: "Failed to register",
             });
         }
