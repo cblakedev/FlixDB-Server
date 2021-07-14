@@ -10,6 +10,11 @@ const UserData = db.define('user_data', {
         type: DataTypes.STRING,
         allowNull: true
     },
+    ownerID: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
+    
     // reviewedMovies: {
     //     type: DataTypes.ARRAY,
     //     allowNull: true
