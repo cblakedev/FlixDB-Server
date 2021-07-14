@@ -16,9 +16,12 @@ router.post('/register', async (req, res) => {
             password: bcrypt.hashSync(password, 17)//utlizes bcrypt to salt req.password and produce hashed password
         });
 
+        let token = jwt.sign({id: User.id}, process.env.JWT_SECRET, {expiresIn: '1 day'});
+
         res.status(202).json({ //if req is succesful, return text/object as JSON
             message: 'Succesfully registered!',
             user: User,
+            sessionToken: token
         })
     } catch (err) {
         if (err instanceof UniqueConstraintError) { //returns an error if user tries to use an already made username
@@ -48,11 +51,15 @@ router.post('/login', async (req, res) => {
         if (verifiedUser) { //if there's a matched username run code below
 
             let verifiedPassword = await bcrypt.compare(password, verifiedUser.password); //verifies if password in DB matches password of the user who made the request
+            
 
             if (verifiedPassword) { //run code below if password is a match
+                let token = jwt.sign({id: verifiedUser.id}, process.env.JWT_SECRET, {expiresIn: '1 day'});
+
                 res.status(201).json({
                     message: `Welcome back, ${verifiedUser.username}!`,
                     user: verifiedUser,
+                    sessionToken: token
                 });
             } else {
                 res.status(401).json({ //return below if username or password is a mismatch

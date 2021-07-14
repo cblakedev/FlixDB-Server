@@ -18,6 +18,10 @@ const UserData = db.define('user_data', {
     //     type: DataTypes.ARRAY,
     //     allowNull: true
     // },
+    ownerID: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
 })
 
 module.exports = UserData
