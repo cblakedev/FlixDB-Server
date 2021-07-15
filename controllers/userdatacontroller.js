@@ -7,7 +7,7 @@ let validateJWT = require('../middleware/jwt-validation');
 
 // UserData Create
 
-router.post("/create", async (req, res) => {
+router.post("/create", validateJWT, async (req, res) => {
     const { image, userBio, ownerID  } = req.body.user_data;
     // const { id } = req.user;
     const UserData = {
@@ -27,7 +27,7 @@ router.post("/create", async (req, res) => {
 
 // Update UserData
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", validateJWT, async (req, res) => {
     const { image, userBio } = req.body.user_data;
     const UserDataId = req.params.id;
     // const userId = req.user.id;

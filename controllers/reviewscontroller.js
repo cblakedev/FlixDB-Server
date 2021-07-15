@@ -56,7 +56,7 @@ router.put("/:id", async (req, res) => {
 
 
 // Delete Review
-router.delete("/delete/:id", async (req, res) => {
+router.delete("/delete/:id", validateJWT, async (req, res) => {
     // const ownerID = req.user.id;
     const reviewId = req.params.id;
   
