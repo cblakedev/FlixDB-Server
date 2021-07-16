@@ -2,8 +2,11 @@ const router = require('express').Router();
 const { UserDataModel } = require('../models');
 let validateJWT = require('../middleware/jwt-validation');
 
-
-/* Write Endpoints Below */
+// Edit User Profile
+router.put("/:id", async (req, res) => {
+    const { image, userBio, reviewedMovies, watchlist, ownerID } = await req.body.user;
+    
+})
 
 
 module.exports = router;

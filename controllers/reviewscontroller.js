@@ -3,9 +3,9 @@ const ReviewModel = require('../models/reviews');
 let validateJWT = require('../middleware/jwt-validation');
 
 // New Review
-router.post('/create', async (req, res) => {
-    const { title, description, rating, review, imageURL, genre, cast, ownerID } = await req.body.review
-    //const id = req.user.id;
+router.post('/create', validateJWT, async (req, res) => {
+    const { title, description, rating, review, imageURL, genre, cast } = req.body.review
+    const {id} = req.user;
     const logReview = {
         title,
         description,
@@ -14,7 +14,7 @@ router.post('/create', async (req, res) => {
         imageURL,
         genre,
         cast, 
-        ownerID
+        ownerID: id
     }
     try {
         const newReview = await ReviewModel.create(logReview);
@@ -27,15 +27,15 @@ router.post('/create', async (req, res) => {
 
 // Update Review
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", validateJWT, async (req, res) => {
     const { review } = await req.body.review;
     const reviewId = req.params.id;
-    //const userId = req.user.id;
+    const userId = req.user.id;
 
     const query = {
         where: {
             id: reviewId,
-            //ownerID: userId
+            ownerID: userId
         }
     };
 
