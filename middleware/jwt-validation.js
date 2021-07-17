@@ -21,7 +21,7 @@ const validateJWT = async (req, res, next) => {
                     id: payload.id
                 }
             });
-            console.log('foundUser -->', foundUser);
+            console.log('foundUser =', foundUser);
 
             if (foundUser) { //if foundUser is truthy create a new user object using the payload information from the user else return an error
                 console.log(foundUser);
