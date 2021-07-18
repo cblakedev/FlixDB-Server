@@ -8,12 +8,12 @@ let validateJWT = require('../middleware/jwt-validation');
 // UserData Create
 
 router.post("/create", validateJWT, async (req, res) => {
-    const { image, userBio, ownerID  } = req.body.user_data;
-    // const { id } = req.user;
+    const { image, userBio  } = req.body.user_data;
+    const { id } = req.user;
     const UserData = {
         image,
         userBio,
-        ownerID
+        ownerID: id
     }
     try {
        const newUserData = await UserDataModel.create(UserData);
@@ -30,12 +30,12 @@ router.post("/create", validateJWT, async (req, res) => {
 router.put("/:id", validateJWT, async (req, res) => {
     const { image, userBio } = req.body.user_data;
     const UserDataId = req.params.id;
-    // const userId = req.user.id;
+    const userId = req.user.id;
   
     const query = {
       where: {
         id: UserDataId,
-        // owner: userId
+        ownerID: userId
       }
     };
   

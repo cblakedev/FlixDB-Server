@@ -3,7 +3,7 @@ const Express = require('express');
 const app = Express();
 const dbConnection = require('./db');
 
-// app.use(require('./middleware/headers')); UNCOMMENT UPON FINISHING MIDDLEWARE FUNCTIONALITY
+app.use(require('./middleware/headers')); // UNCOMMENT UPON FINISHING MIDDLEWARE FUNCTIONALITY
 
 const controllers = require('./controllers')
 
