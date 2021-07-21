@@ -27,7 +27,6 @@ router.post('/create', validateJWT, async (req, res) => {
 });
 
 // Update Review
-
 router.put("/:id", validateJWT, async (req, res) => {
   const { review } = await req.body.review;
   const reviewId = req.params.id;
@@ -51,7 +50,6 @@ router.put("/:id", validateJWT, async (req, res) => {
       res.status(500).json({error: err.message });
   }
 });
-
 
 // Delete Review
 router.delete("/delete/:id", validateJWT, async (req, res) => {
@@ -103,6 +101,5 @@ router.get('/:id', validateJWT, async (req, res) => {//
       });
   }
 })
-
 
 module.exports = router
