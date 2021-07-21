@@ -1,9 +1,9 @@
 const UserModel = require('./user');
 const ReviewModel = require('./reviews');
-const UserDataModel = require('./userdata');
+const WatchlistModel = require('./watchlist');
 
 module.exports = {
     UserModel,
     ReviewModel,
-    UserDataModel
+    WatchlistModel
 }
