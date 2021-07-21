@@ -10,9 +10,8 @@ const controllers = require('./controllers')
 app.use(Express.json());
 
 app.use('/user', controllers.userController);
-// app.use(require("./middleware/jwt-validation"));
 app.use('/reviews', controllers.reviewsController);
-app.use('/userData', controllers.userDataController); 
+app.use('/watchlist', controllers.watchlistController); 
 
 dbConnection.authenticate()
     .then(() => dbConnection.sync())
