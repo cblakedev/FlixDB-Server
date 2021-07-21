@@ -82,7 +82,6 @@ router.post('/login', async (req, res) => {
 })
 
 //Edit User Image and Bio
-
 router.put("/:id", validateJWT, async (req, res) => {
     const { image, userBio } = req.body.user;
     const userId = req.params.id;
