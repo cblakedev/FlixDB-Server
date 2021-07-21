@@ -14,14 +14,13 @@ const validateJWT = async (req, res, next) => {
         const payload = authorization ? jwt.verify(authorization.includes('Bearer') ? authorization.split(' ')[1] : authorization, process.env.JWT_SECRET) : undefined;
 
         console.log(payload);
-
         if (payload) { //if payload is truthy find a user with a same id as the payload and save info to foundUser
             let foundUser = await UserModel.findOne({
                 where: {
                     id: payload.id
                 }
             });
-            console.log('foundUser =', foundUser);
+            console.log('foundUser -->', foundUser);
 
             if (foundUser) { //if foundUser is truthy create a new user object using the payload information from the user else return an error
                 console.log(foundUser);
@@ -44,4 +43,5 @@ const validateJWT = async (req, res, next) => {
     }
 };
 
-module.exports = validateJWT; //export module to be used outside of this file
+
+module.exports = validateJWT;

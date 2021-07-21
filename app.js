@@ -3,7 +3,7 @@ const Express = require('express');
 const app = Express();
 const dbConnection = require('./db');
 
-app.use(require('./middleware/headers')); //UNCOMMENT UPON FINISHING MIDDLEWARE FUNCTIONALITY
+app.use(require('./middleware/headers')); 
 
 const controllers = require('./controllers');
 
@@ -11,7 +11,7 @@ app.use(Express.json());
 
 app.use('/user', controllers.userController);
 app.use('/reviews', controllers.reviewsController);
-app.use('/userData', controllers.userDataController); 
+app.use('/watchlist', controllers.watchlistController); 
 
 dbConnection.authenticate()
     .then(() => dbConnection.sync())

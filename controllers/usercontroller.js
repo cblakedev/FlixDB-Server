@@ -3,23 +3,26 @@ const { UniqueConstraintError } = require("sequelize/lib/errors");
 const { UserModel } = require('../models');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const validateJWT = require('../middleware/jwt-validation');
 
 
 /* Register User Endpoint*/
 router.post('/register', async (req, res) => {
 
-    let { username, password } = req.body.user; //deconstructs the requests' username and password
+    let { username, password, image, userBio } = req.body.user; //deconstructs the requests' username and password
 
     try {
         const User = await UserModel.create({ //creates new instance of username and password based on the request
             username,
-            password: bcrypt.hashSync(password, 17)//utlizes bcrypt to salt req.password and produce hashed password
+            password: bcrypt.hashSync(password, 17),//utilizes bcrypt to salt req.password and produce hashed password
+            image,
+            userBio
         });
 
         let token = jwt.sign({id: User.id}, process.env.JWT_SECRET, {expiresIn: '1 day'});
 
-        res.status(202).json({ //if req is succesful, return text/object as JSON
-            message: 'Succesfully registered!',
+        res.status(202).json({ //if req is successful, return text/object as JSON
+            message: 'Successfully registered!',
             user: User,
             sessionToken: token
         })
@@ -29,7 +32,7 @@ router.post('/register', async (req, res) => {
                 message: "Username already in use. Please try a different username.",
             });
         } else {
-            res.status(500).json({ //returns an error if request is unsuccesful
+            res.status(500).json({ //returns an error if request is unsuccessful
                 message: "Failed to register",
             });
         }
@@ -72,11 +75,35 @@ router.post('/login', async (req, res) => {
             });
         }
     } catch (err) {
-        res.status(500).json({//returns an error if request is unsuccesful
+        res.status(500).json({//returns an error if request is unsuccessful
             error: "There's an error logging in"
         })
     }
 })
 
+//Edit User Image and Bio
+
+router.put("/:id", validateJWT, async (req, res) => {
+    const { image, userBio } = req.body.user;
+    const userId = req.params.id;
+
+    const query = {
+        where: {
+            id: userId
+        }
+    };
+
+    const updateUser = {
+        image: image,
+        userBio: userBio
+    };
+
+    try {
+        const update = await UserModel.update(updateUser, query);
+        res.status(200).json(update);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
 
 module.exports = router;

@@ -11,6 +11,16 @@ const User = db.define('user', {
     password: {
         type: DataTypes.STRING,
         allowNull: false
+    }, 
+
+    image: {
+        type: DataTypes.STRING,
+        allowNull: false
+    }, 
+
+    userBio: {
+        type: DataTypes.STRING,
+        allowNull: true
     }
 })
 
