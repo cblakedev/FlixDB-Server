@@ -16,8 +16,8 @@ app.use('/watchlist', controllers.watchlistController);
 dbConnection.authenticate()
     .then(() => dbConnection.sync())
     .then(() => {
-        app.listen(5000, () => {
-            console.log('[server] : App is listening to port 5000.');
+        app.listen(process.env.PORT, () => {
+            console.log(`[server] : App is listening on ${process.env.PORT}`);
         })
     })
     .catch((err) => {
