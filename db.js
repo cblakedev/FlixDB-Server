@@ -1,6 +1,6 @@
 require('dotenv').config();
 const Sequelize = require("sequelize");
-const sequelize = new Sequelize(process.env.DATABSE_URL, process.env.HOST != 'local' ? {
+const sequelize = new Sequelize(process.env.DATABASE_URL, process.env.HOST != 'local' ? {
     dialect: 'postgres',
     define: {
         timestamps: false
