@@ -11,13 +11,18 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@heroku/buildpack-registry": "^1.0.1",
+    "async-file": "^2.0.2",
     "bcryptjs": "^2.4.3",
+    "cli-ux": "^4.9.3",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "got": "^8.3.2",
     "heroku": "^7.56.1",
     "jsonwebtoken": "^8.5.1",
     "pg": "^8.6.0",
     "pg-hstore": "^2.3.4",
+    "phoenix": "^1.5.9",
     "sequelize": "^6.6.5"
   },
   "devDependencies": {
