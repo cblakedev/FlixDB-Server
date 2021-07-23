@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const validateJWT = require('../middleware/jwt-validation');
 
-
+//meowwwwwwww/
 /* Register User Endpoint*/
 router.post('/register', async (req, res) => {
 
