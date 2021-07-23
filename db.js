@@ -1,7 +1,24 @@
 const Sequelize = require("sequelize");
-const sequelize = new Sequelize(process.env.DATABSE_URL || `postgresql://postgres:${encodeURIComponent(process.env.PASS)}@localhost:5432/movie-reviews`, {
+const sequelize = new Sequelize(process.env.DATABSE_URL, process.env.HOST != 'local' ? {
     dialect: 'postgres',
-    ssl: process.env.ENVIRONMENT === 'main'
-});
+    define: {
+        timestamps: false
+    },
+    dialectOptions: {
+        ssl: {
+            require: true,
+            rejectUnauthorized: false
+        }
+    }
+}
 
+    :
+
+    {
+        dialect: 'postgres',
+        define: {
+            timestamps: false
+        }
+    }
+)
 module.exports = sequelize;
