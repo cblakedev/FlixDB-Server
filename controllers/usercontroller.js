@@ -14,8 +14,8 @@ router.post('/register', async (req, res) => {
         const User = await UserModel.create({ //creates new instance of username and password based on the request
             username,
             password: bcrypt.hashSync(password, 17),//utilizes bcrypt to salt req.password and produce hashed password
-            image = '',
-            userBio = ''
+            image,
+            userBio
         });
 
         let token = jwt.sign({id: User.id}, process.env.JWT_SECRET, {expiresIn: '1 day'});
