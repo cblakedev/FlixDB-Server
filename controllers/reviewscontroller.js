@@ -102,4 +102,23 @@ router.get('/:id', validateJWT, async (req, res) => {//
   }
 })
 
+//GET All Reviews of User by Title
+router.get('/:title', validateJWT, async (req, res) => {//
+  const {title} = req.params
+
+  try {
+      const userReviews = await ReviewModel.findAll({//find all reviews from all users wherein title from current request matches title in the DB.
+          where: {
+              title: title
+          }
+      });
+
+      res.status(200).json(userReviews)//if successful, return and jsonify data
+  } catch(err) {
+      res.status(500).json({//if 500 error, return and jsonify error
+          error: `[error]: ${err}`
+      });
+  }
+})
+
 module.exports = router
