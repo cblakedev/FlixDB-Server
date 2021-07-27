@@ -109,7 +109,7 @@ router.get("/:title", validateJWT, async (req, res) => { //
   try {
       const userReviews = await ReviewModel.findAll({//find all reviews from all users wherein title from current request matches title in the DB.
           where: {
-              title: title
+              title: JSON.stringify(title)
           }
       });
 
