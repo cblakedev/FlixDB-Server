@@ -103,7 +103,7 @@ router.get('/:id', validateJWT, async (req, res) => {//
 })
 
 //GET All Reviews of User by Title
-router.get('/title', validateJWT, async (req, res) => { //
+router.get("/:title", validateJWT, async (req, res) => { //
   const {title} = req.params
 
   try {
