@@ -20,7 +20,7 @@ const Review = db.define('review', {
     },
     imageURL: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     },
     genre: {
         type: DataTypes.STRING,
