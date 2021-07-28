@@ -10,11 +10,8 @@ router.post('/create', validateJWT, async (req, res) => {
   const logReview = {
       title,
       description,
-      rating,
       review,
       imageURL,
-      genre,
-      cast, 
       ownerID: id
   }
   try {
