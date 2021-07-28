@@ -10,10 +10,6 @@ const Review = db.define('review', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    rating: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-    },
     review: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -21,14 +17,6 @@ const Review = db.define('review', {
     imageURL: {
         type: DataTypes.STRING,
         allowNull: true,
-    },
-    genre: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    cast: {
-        type: DataTypes.STRING,
-        allowNull: false,
     },
     ownerID: {
         type: DataTypes.INTEGER,
