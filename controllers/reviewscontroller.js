@@ -81,8 +81,8 @@ router.get('/', validateJWT, async (req, res) => {
 });
 
 //GET All Reviews of User
-router.get('/:id', validateJWT, async (req, res) => {//
-  const {id} = req.params
+router.get('/MYREVIEWS', validateJWT, async (req, res) => {//
+  const {id} = req.USER;
 
   try {
       const userReviews = await ReviewModel.findAll({//find all reviews from "ONE" user wherein "id" from current request matches owner id in the DB.
