@@ -4,7 +4,7 @@ let validateJWT = require('../middleware/jwt-validation');
 
 // New Watchlist Item
 router.post("/create", validateJWT, async (req, res) => {
-    const { title, description, imageURL, genre, cast } = await req.body.watchlist;
+    const { title, description, imageURL } = await req.body.watchlist;
     const id = req.user.id;
     const addMovie = {
         title, 
