@@ -10,8 +10,6 @@ router.post("/create", validateJWT, async (req, res) => {
         title, 
         description, 
         imageURL,
-        genre,
-        cast,
         ownerId: id
     }
     try {
