@@ -16,7 +16,7 @@ const Review = db.define('review', {
     },
     imageURL: {
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: false,
     },
     ownerID: {
         type: DataTypes.INTEGER,
