@@ -14,14 +14,6 @@ const Watchlist = db.define('watchlist', {
         type: DataTypes.STRING,
         allowNull: false
     },
-    genre: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    cast: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
     ownerId: {
         type: DataTypes.INTEGER,
         allowNull: false,
