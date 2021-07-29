@@ -5,7 +5,7 @@ let validateJWT = require('../middleware/jwt-validation');
 
 // New Review
 router.post('/create', validateJWT, async (req, res) => {
-  const { title, description, rating, review, imageURL, genre, cast } = req.body.review
+  const { title, description, review, imageURL } = req.body.review
   const {id} = req.user;
   const logReview = {
       title,
@@ -69,20 +69,20 @@ router.delete("/delete/:id", validateJWT, async (req, res) => {
   })
 
  //GET All Reviews from All Users
-router.get('/', validateJWT, async (req, res) => {
-  try {
-      const allReviews = await ReviewModel.findAll(); //find all reviews from all users. findAll is a sequelize method
-      res.status(200).json(allReviews);//if request was successful, return and jsonify the data
-  } catch(err) {
-      res.status(500).json({ //if response is 500(server error), return the error and jsonify it
-          error: `[error]: ${err}`
-      });
-  }
-});
+// router.get('/', validateJWT, async (req, res) => {
+//   try {
+//       const allReviews = await ReviewModel.findAll(); //find all reviews from all users. findAll is a sequelize method
+//       res.status(200).json(allReviews);//if request was successful, return and jsonify the data
+//   } catch(err) {
+//       res.status(500).json({ //if response is 500(server error), return the error and jsonify it
+//           error: `[error]: ${err}`
+//       });
+//   }
+// });
 
 //GET All Reviews of User
-router.get('/MYREVIEWS', validateJWT, async (req, res) => {//
-  const {id} = req.USER;
+router.get('/myreviews', validateJWT, async (req, res) => {//
+  const {id} = req.user
 
   try {
       const userReviews = await ReviewModel.findAll({//find all reviews from "ONE" user wherein "id" from current request matches owner id in the DB.
@@ -92,6 +92,25 @@ router.get('/MYREVIEWS', validateJWT, async (req, res) => {//
       });
 
       res.status(200).json(userReviews)//if successful, return and jsonify data
+  } catch(err) {
+      res.status(500).json({//if 500 error, return and jsonify error
+          error: `[error]: ${err}`
+      });
+  }
+})
+
+//GET All Reviews of User
+router.get('/MYREVIEWS', validateJWT, async (req, res) => {//
+  const {id} = req.USER;
+
+  try {
+      const allReviews = await ReviewModel.findAll({//find all reviews from all users wherein title from current request matches title in the DB.
+          where: {
+              title: title
+          }
+      });
+
+      res.status(200).json(allReviews)//if successful, return and jsonify data
   } catch(err) {
       res.status(500).json({//if 500 error, return and jsonify error
           error: `[error]: ${err}`
