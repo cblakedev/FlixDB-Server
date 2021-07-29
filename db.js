@@ -5,13 +5,4 @@ const sequelize = new Sequelize(process.env.DATABASE_URL, {
     ssl: process.env.ENVIRONMENT === 'production'
 });
 
-    :
-
-    {
-        dialect: 'postgres',
-        define: {
-            timestamps: false
-        }
-    }
-)
 module.exports = sequelize;
