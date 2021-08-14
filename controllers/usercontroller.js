@@ -14,7 +14,7 @@ router.post('/register', async (req, res) => {
         const User = await UserModel.create({ //creates new instance of username and password based on the request
             username,
             password: bcrypt.hashSync(password, 17),//utilizes bcrypt to salt req.password and produce hashed password
-            image,
+            image: '/assets/noAvatar.png',
             userBio
         });
 
@@ -80,25 +80,63 @@ router.post('/login', async (req, res) => {
     }
 })
 
-//Edit User Image and Bio
-router.put("/:id", validateJWT, async (req, res) => {
-    const { image, userBio } = req.body.user;
-    const userId = req.params.id;
+//Update User Image 
+router.put("/update/avatar", validateJWT, async (req, res) => {
+    const { image} = req.body.user;
+    const {id} = req.user
 
     const query = {
         where: {
-            id: userId
+            id: id
         }
     };
 
     const updateUser = {
-        image: image,
+        image: image
+    };
+
+    try {
+        const update = await UserModel.update(updateUser, query);
+        res.status(200).json(update);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+//Update User Bio
+router.put("/update/bio", validateJWT, async (req, res) => {
+    const {userBio } = req.body.user;
+    const {id} = req.user
+
+    const query = {
+        where: {
+            id: id
+        }
+    };
+
+    const updateUser = {
         userBio: userBio
     };
 
     try {
         const update = await UserModel.update(updateUser, query);
         res.status(200).json(update);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+router.get("/userinfo", validateJWT, async (req, res) => {
+    const {id} = req.user
+
+    try {
+        const getUser = await UserModel.findOne({
+            where: {
+                id: id
+            }
+        });
+
+        res.status(200).json(getUser);
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
