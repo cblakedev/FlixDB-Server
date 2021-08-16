@@ -9,12 +9,13 @@ const validateJWT = require('../middleware/jwt-validation');
 router.post('/register', async (req, res) => {
 
     let { username, password, image, userBio } = req.body.user; //deconstructs the requests' username and password
-
+    let myImage = '/assets/noAvatar.png';
+    
     try {
         const User = await UserModel.create({ //creates new instance of username and password based on the request
             username,
             password: bcrypt.hashSync(password, 17),//utilizes bcrypt to salt req.password and produce hashed password
-            image: '/assets/noAvatar.png',
+            image: myImage,
             userBio
         });
 

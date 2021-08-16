@@ -99,14 +99,14 @@ router.get('/myreviews', validateJWT, async (req, res) => {//
   }
 })
 
-//GET All Reviews of User
-router.get('/MYREVIEWS', validateJWT, async (req, res) => {//
-  const {id} = req.USER;
+//GET All Reviews of a Movie based on the Title
+router.get('/search/:value', validateJWT, async (req, res) => {//
+  const value = req.params.value
 
   try {
       const allReviews = await ReviewModel.findAll({//find all reviews from all users wherein title from current request matches title in the DB.
           where: {
-              title: title
+              title: value
           }
       });
 
