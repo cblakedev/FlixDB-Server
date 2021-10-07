@@ -23,9 +23,4 @@ const sequelize = new Sequelize(process.env.DATABASE_URL, process.env.HOST != 'l
     )
 
 
-//     || `postgres://postgress:${encodeURIComponent(process.env.PASS)}@localhost:5432/movie-reviews`,
-// {
-//     dialect: 'postgres',
-//     ssl: process.env.ENVIRONMENT === 'production'
-// }
 module.exports = sequelize;

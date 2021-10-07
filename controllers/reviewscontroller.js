@@ -68,18 +68,6 @@ router.delete("/delete/:id", validateJWT, async (req, res) => {
     }
   })
 
- //GET All Reviews from All Users
-// router.get('/', validateJWT, async (req, res) => {
-//   try {
-//       const allReviews = await ReviewModel.findAll(); //find all reviews from all users. findAll is a sequelize method
-//       res.status(200).json(allReviews);//if request was successful, return and jsonify the data
-//   } catch(err) {
-//       res.status(500).json({ //if response is 500(server error), return the error and jsonify it
-//           error: `[error]: ${err}`
-//       });
-//   }
-// });
-
 //GET All Reviews of User
 router.get('/myreviews', validateJWT, async (req, res) => {//
   const {id} = req.user
