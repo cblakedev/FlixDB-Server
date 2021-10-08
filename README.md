@@ -10,7 +10,7 @@ pattern is used to build this application and is deployed in Heroku.
 ## Deployed App
 - https://flixdb-client.herokuapp.com/
 
-### Demo Login(Tenant/Admin)
+### Demo Login
 The demo login below is used to demo the project without having to registe.
 - **username:** 1@test.com
 - **password:** Password1!
