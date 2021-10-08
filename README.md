@@ -11,7 +11,7 @@ pattern is used to build this application and is deployed in Heroku.
 - https://flixdb-client.herokuapp.com/
 
 ### Demo Login
-The demo login below is used to demo the project without having to registe.
+The demo login below is used to demo the project without having to register.
 - **username:** 1@test.com
 - **password:** Password1!
 
